@@ -1,0 +1,28 @@
+.Home{
+    background-color: rgb(192, 192, 195);
+    margin-top: 90px;
+    width: 100%;
+    display: flex;
+
+}
+aside{
+    width: 300px;
+    height: 100%;
+    background-color: rgb(220, 216, 216);
+
+}
+.fixed{
+    margin-top: 30px;
+    width: 250px;
+    height: 800px;
+    overflow: hidden;
+    position: fixed;
+    background-color: rgb(19, 21, 21);
+}
+.container{
+    width: 100%;
+    background-color: rgb(253, 251, 255);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    color: rgb(40, 39, 39);
+}
