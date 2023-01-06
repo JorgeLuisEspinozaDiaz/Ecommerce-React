@@ -51,7 +51,7 @@ const Home = () => {
               <FilterPrice setinputPrice={setinputPrice} />
             </details>
             <details className="fixed__datails">
-              <summary className="fixed__summary">Filter precio</summary>
+              <summary className="fixed__summary">Category</summary>
               <FilterCategory setinputValue={setinputValue} />
             </details>
             <ToOrderProducts />

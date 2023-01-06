@@ -16,6 +16,7 @@
 .price__input{
     width: 150px;
     border-radius: 5px;
+    border: 1px solid black;
 }
 .price__button{
     width: 100px;

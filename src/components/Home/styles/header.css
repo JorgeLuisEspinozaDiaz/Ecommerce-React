@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 999;
     top: 0;
-    background-color:#f93449;  
+    background-color:#f43a4d;  
 }
 
 .navBar{
@@ -22,6 +22,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
+}
+
+.logo{
+
+border-radius: 7px;
+    
+    
 }
 
 .navBar__container{
@@ -46,12 +54,14 @@
 
 .header__title{
     font-size: 2rem;
+    color: white;
 }
 
 .item__title{
     text-transform: uppercase;
     font-size: .7rem;
     font-weight: bold;
+    color: white;
 }
 .icons{
     font-size: 1.5rem;

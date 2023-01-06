@@ -5,6 +5,7 @@ import {
   getAllProducts,
   getProductsByCategory,
 } from "../../store/slices/products.slice";
+import "./styles/filterCategory.css";
 
 const FilterCategory = ({ setinputValue }) => {
   const [categories, setSategories] = useState();
@@ -31,12 +32,17 @@ const FilterCategory = ({ setinputValue }) => {
   console.log(categories);
 
   return (
-    <section>
-      <h3>Categories</h3>
-      <ul>
-        <li onClick={handleallProduct}>All products</li>
+    <section className="category">
+      <ul className="category__container">
+        <li className="category__item" onClick={handleallProduct}>
+          All products
+        </li>
         {categories?.map((category) => (
-          <li onClick={() => handleClick(category.id)} key={category.id}>
+          <li
+            className="category__item"
+            onClick={() => handleClick(category.id)}
+            key={category.id}
+          >
             {category.name}
           </li>
         ))}
