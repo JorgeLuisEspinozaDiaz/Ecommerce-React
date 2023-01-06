@@ -2,39 +2,41 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../Home/styles/header.css";
 
-const Header = ({ handleChange }) => {
+const Header = () => {
   return (
     <header className="header">
       <nav className="navBar">
         <div className="navBar__container">
-          <h1 className="navBar__logo">
-            <Link to="/">Logo</Link>
-          </h1>
-          <form className="navBar__form">
-            <input
-              onChange={handleChange}
-              className="navBar__input"
-              type="text"
-              placeholder="buscar producto"
-            />
-            <button>
-              <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form>
-          <ul className="containericons">
+          <div className="navBar__logo">
+            <Link to="/">
+              <img className="logo" src="/logo.png" alt="logo" />
+            </Link>
+          </div>
+          <Link to="/">
+            <h1 className="header__title">E-ECOMMERCE</h1>
+          </Link>
+
+          <ul className="containers">
             <li className="cart__item">
-              <i className="fa-sharp fa-solid fa-user icons"></i>
-              <Link to="/createUser">crea tu cuenta</Link>
+              <Link to="/login">
+                <i className="fa-regular fa-circle-user icons"></i>
+              </Link>
+
+              <Link to="/login">
+                <span className="item__title">INICIA SESIÓN</span>
+              </Link>
             </li>
             <li className="cart__item">
-              <i className="fa-sharp fa-solid fa-box-archive icons"></i>
-
-              <Link to="/login">ingresa</Link>
+              <i className="fa-solid fa-cart-shopping  icons"></i>
+              <Link to="/cart">
+                <span className="item__title">CARRITO</span>
+              </Link>
             </li>
             <li className="cart__item">
-              <i className="fa-sharp fa-solid fa-cart-plus icons"></i>
-
-              <Link to="/cart">Mis compras</Link>
+              <i className="fa-solid fa-store icons"></i>
+              <Link to="/purchases">
+                <span className="item__title">MIS PEDIDOS</span>
+              </Link>
             </li>
           </ul>
         </div>

@@ -6,7 +6,7 @@ import {
   getProductsByCategory,
 } from "../../store/slices/products.slice";
 
-const FilterCategory = () => {
+const FilterCategory = ({ setinputValue }) => {
   const [categories, setSategories] = useState();
   const dispatch = useDispatch();
 
@@ -21,9 +21,11 @@ const FilterCategory = () => {
 
   const handleClick = (id) => {
     dispatch(getProductsByCategory(id));
+    setinputValue("");
   };
   const handleallProduct = () => {
     dispatch(getAllProducts());
+    setinputValue("");
   };
 
   console.log(categories);

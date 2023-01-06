@@ -7,8 +7,10 @@ import CreateUser from "./assets/pages/CreateUser";
 import Home from "./assets/pages/Home";
 import Login from "./assets/pages/Login";
 import ProductInfo from "./assets/pages/ProductInfo";
+import Purchases from "./assets/pages/Purchases";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import { getUserCart } from "./store/slices/cart.slice";
+import ProtectedRoutes from "./components/shared/ProtectedRoutes";
 import { getAllProducts } from "./store/slices/products.slice";
 
 function App() {
@@ -18,7 +20,6 @@ function App() {
 
   useEffect(() => {
     dispach(getAllProducts());
-    dispach(getUserCart());
   }, []);
 
   //este es el codigo para crear un nuevo usuario
@@ -47,9 +48,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/createUser" element={<CreateUser />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductInfo />} />
+        {/*rutas protegiidas*/}
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/purchases" element={<Purchases />} />
+        </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

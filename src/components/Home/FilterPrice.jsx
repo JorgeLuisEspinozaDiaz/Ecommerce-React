@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/filterPrice.css";
 
 const FilterPrice = ({ setinputPrice }) => {
   //acceder al form sin libreris
@@ -22,21 +23,27 @@ const FilterPrice = ({ setinputPrice }) => {
         from: inputFrom,
         to: Infinity,
       });
+    } else {
+      setinputPrice({
+        from: 0,
+        to: Infinity,
+      });
     }
   };
   return (
-    <section>
-      <h2>Price</h2>
-      <form onSubmit={hableSubmit}>
-        <div>
+    <section className="price">
+      <form onSubmit={hableSubmit} className="price__form">
+        <div className="price__from">
           <label htmlFor="from">From</label>
-          <input type="number" id="from" />
+          <input className="price__input" type="number" id="from" />
         </div>
-        <div>
+        <div className="price__from">
           <label htmlFor="to">To</label>
-          <input type="number" id="to" />
+          <input className="price__input" type="number" id="to" />
         </div>
-        <button>Apply</button>
+        <div className="price__buttons">
+          <button className="price__button">Apply</button>
+        </div>
       </form>
     </section>
   );

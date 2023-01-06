@@ -1,9 +1,12 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import "./style/login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
   const { handleSubmit, register, reset } = useForm();
 
   const submit = (data) => {
@@ -13,6 +16,9 @@ const Login = () => {
       .then((res) => {
         console.log(res.data.data);
         localStorage.setItem("token", res.data.data.token);
+        //si ya me logueo cambia a true
+        setIsLogged(true);
+        navigate("/");
       })
       .catch((err) => console.log(err));
     reset({
@@ -20,6 +26,25 @@ const Login = () => {
       password: "",
     });
   };
+  useEffect(() => {
+    const condition = localStorage.getItem("token") ? true : false;
+    setIsLogged(condition);
+  }, []);
+  console.log(isLogged);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLogged(false);
+  };
+
+  if (isLogged) {
+    return (
+      <div className="xd">
+        <h1 className="logaut">User logged ❤ </h1>
+        <button onClick={handleLogout}>logout</button>
+      </div>
+    );
+  }
 
   return (
     <div className="login-container">

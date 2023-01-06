@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import CardProduct from "../../components/Home/CardProduct";
 import FilterCategory from "../../components/Home/FilterCategory";
 import FilterPrice from "../../components/Home/FilterPrice";
+import ToOrderProducts from "../../components/Home/ToOrderProducts";
 import "./style/home.css";
 
 const Home = () => {
@@ -11,6 +12,8 @@ const Home = () => {
 
   //creacion de estado
   const [productFilter, setproductFilter] = useState();
+  const [inputValue, setinputValue] = useState("");
+
   const [inputPrice, setinputPrice] = useState({
     from: 0,
     to: Infinity,
@@ -23,6 +26,7 @@ const Home = () => {
       pro.title.toLowerCase().includes(inputValue)
     );
     setproductFilter(filter);
+    setinputValue(e.target.value);
   };
 
   useEffect(() => {
@@ -38,35 +42,39 @@ const Home = () => {
   //+ adelante es para convertir a numero un string
   return (
     <>
-      <Header handleChange={handleChange} />
-      {/* <input onChange={handleChange} type="text" /> */}
-      <FilterPrice setinputPrice={setinputPrice} />
-      <FilterCategory />
-      <div className="Home">
-        {/* <aside>
+      {/*  */}
+      <div className="home">
+        <aside className="aside">
           <div className="fixed">
-            <details>
-              <summary>Price</summary>
-              <input />
-              <input />
-              <button>Filter precio</button>
+            <details className="fixed__datails">
+              <summary className="fixed__summary">Price</summary>
+              <FilterPrice setinputPrice={setinputPrice} />
             </details>
-
-            <details>
-              <summary>Category</summary>
-              <ul>
-                <li>Kitchen</li>
-                <li>Smart TV</li>
-                <li>Smartphones</li>
-                <li>Computers</li>
-              </ul>
+            <details className="fixed__datails">
+              <summary className="fixed__summary">Filter precio</summary>
+              <FilterCategory setinputValue={setinputValue} />
             </details>
+            <ToOrderProducts />
           </div>
-        </aside> */}
-        <div className="container">
-          {productFilter?.filter(filterCallback).map((product) => (
-            <CardProduct key={product.id} product={product} />
-          ))}
+        </aside>
+        <div className="home__product">
+          <div className="home__input">
+            <input className="input" onChange={handleChange} type="text" />
+            <i className="fa-solid fa-magnifying-glass iconInput"></i>
+          </div>
+          <div className="product__container">
+            {productFilter?.filter(filterCallback).length !== 0 ? (
+              productFilter
+                ?.filter(filterCallback)
+                .map((product) => (
+                  <CardProduct key={product.id} product={product} />
+                ))
+            ) : (
+              <h1 className="product__msg">
+                Not exist products to this filter
+              </h1>
+            )}
+          </div>
         </div>
       </div>
     </>
