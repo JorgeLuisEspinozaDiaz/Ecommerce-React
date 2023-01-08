@@ -32,26 +32,31 @@ const Cart = () => {
       .catch((err) => console.log(err));
   };
 
-  console.log(cartProducts);
   return (
-    <section className="cart">
-      <div>
+    <div className="cart-container">
+      <div className="cart__container-total">
+        <h2 className="cart__title">Shopping cart</h2>
+        <div className="cart__div-total">
+          <span className="cart__span">Total</span>
+          <p className="cart__total-number">
+            $.
+            {cartProducts
+              ? cartProducts.reduce((acc, cv) => {
+                  return cv.price * cv.productsInCart.quantity + acc;
+                }, 0)
+              : 0}
+          </p>
+        </div>
+        <button className="cart__btn-checkout" onClick={handleCheckout}>
+          Checkout
+        </button>
+      </div>
+      <div className="cart__product-container">
         {cartProducts?.map((product) => (
           <CartProduct key={product.id} product={product} />
         ))}
       </div>
-      <footer>
-        <span>Total:</span>
-        <p>
-          {cartProducts
-            ? cartProducts.reduce((acc, cv) => {
-                return cv.price * cv.productsInCart.quantity + acc;
-              }, 0)
-            : 0}
-        </p>
-        <button onClick={handleCheckout}>checkout</button>
-      </footer>
-    </section>
+    </div>
   );
 };
 

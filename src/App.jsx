@@ -11,6 +11,7 @@ import Purchases from "./assets/pages/Purchases";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ProtectedRoutes from "./components/shared/ProtectedRoutes";
+import ProtectedRoutess from "./components/shared/ProtectedRoutess";
 import { getAllProducts } from "./store/slices/products.slice";
 
 function App() {
@@ -45,7 +46,9 @@ function App() {
       <Header />
       <Routes>
         //ruta '/' y en el elemnte retorna solo jsx
-        <Route path="/" element={<Home />} />
+        <Route element={<ProtectedRoutess />}>
+          <Route path="/" element={<Home />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/createUser" element={<CreateUser />} />
         <Route path="/product/:id" element={<ProductInfo />} />
@@ -55,7 +58,6 @@ function App() {
           <Route path="/purchases" element={<Purchases />} />
         </Route>
       </Routes>
-      <Footer />
     </div>
   );
 }

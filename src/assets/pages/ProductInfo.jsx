@@ -33,7 +33,7 @@ const ProductInfo = () => {
     <div className="product__info">
       <ProductDescription product={product} />
       <section>
-        <h2>Discover similar items</h2>
+        <h2 className="info__title">Discover similar items</h2>
         <div className="similar-products-container">
           {similarProducts?.map((simPro) => {
             if (simPro.title !== product.title) {

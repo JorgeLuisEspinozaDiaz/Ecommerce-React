@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserCart } from "../../store/slices/cart.slice";
 import getConfig from "../../utils/getConfig";
@@ -9,6 +9,7 @@ import "./styles/card_product.css";
 const CardProduct = ({ product }) => {
   const navigate = useNavigate();
   const dispacth = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
   const handleClick = () => {
     navigate(`/product/${product.id}`);
@@ -17,7 +18,6 @@ const CardProduct = ({ product }) => {
   const handleBtnClick = (e) => {
     e.stopPropagation();
     const URL = "https://e-commerce-api.academlo.tech/api/v1/cart";
-
     const data = {
       id: product.id,
       quantity: 1,
@@ -28,7 +28,25 @@ const CardProduct = ({ product }) => {
         console.log(res.data);
         dispacth(getUserCart());
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 400) {
+          //update
+          const URLPatch = "https://e-commerce-api.academlo.tech/api/v1/cart";
+          const prevQuantity = cart?.filter((e) => e.id === product.id)[0]
+            .productsInCart.quantity;
+          const data = {
+            id: product.id,
+            newQuantity: prevQuantity + 1,
+          };
+          axios
+            .patch(URLPatch, data, getConfig())
+            .then((res) => {
+              console.log(res.data);
+              dispacth(getUserCart());
+            })
+            .catch((err) => console.log(err));
+        }
+      });
   };
 
   return (

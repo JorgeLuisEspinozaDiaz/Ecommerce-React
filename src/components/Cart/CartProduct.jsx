@@ -23,18 +23,24 @@ const CartProduct = ({ product }) => {
   console.log(product);
 
   return (
-    <article className="cart-product">
-      <header>
-        <h4>{product.brand}</h4>
-        <h3>{product.title}</h3>
-      </header>
-      <button onClick={handleDelete}>
-        <i className="fa-regular fa-trash-can"></i>
-      </button>
-      <div>{product.productsInCart.quantity}</div>
-      <p>Total:</p>
-      <span>{product.price}</span>
-    </article>
+    <div className="cart__product">
+      <div className="cart__product-div">
+        <h3 className="cart__product-title">{product.title}</h3>
+        <button className="cart__product-btn" onClick={handleDelete}>
+          <i className="fa-regular fa-trash-can"></i>
+        </button>
+        <div className="cart__product-container-total">
+          <div className="cart__product-quantity">
+            <p>Amount</p>
+            {product.productsInCart.quantity}
+          </div>
+          <div className="cart__product-div-price">
+            <p className="cart__product-title">Price :</p>
+            <span className="cart__product-price">{product.price}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

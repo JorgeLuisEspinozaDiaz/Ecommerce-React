@@ -34,11 +34,15 @@ const FilterPrice = ({ setinputPrice }) => {
     <section className="price">
       <form onSubmit={hableSubmit} className="price__form">
         <div className="price__from">
-          <label htmlFor="from">From</label>
+          <label htmlFor="from" className="form__label">
+            From
+          </label>
           <input className="price__input" type="number" id="from" />
         </div>
         <div className="price__from">
-          <label htmlFor="to">To</label>
+          <label htmlFor="to" className="form__label">
+            To
+          </label>
           <input className="price__input" type="number" id="to" />
         </div>
         <div className="price__buttons">
